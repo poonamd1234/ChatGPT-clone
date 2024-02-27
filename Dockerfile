@@ -1,14 +1,11 @@
-FROM debian:bookworm
-
-# Change Debian mirror to http://ftp.us.debian.org/debian/
-RUN sed -i 's/http:\/\/deb.debian.org\/debian\//http:\/\/ftp.us.debian.org\/debian\//' /etc/apt/sources.list
+FROM python:3.10-slim
 
 WORKDIR /aiBot
 
 COPY . /aiBot/
 
 RUN apt-get update && \
-    apt-get install -y python3-dev && \
+    apt-get install python3-dev -y && \
     chmod +x envSetup.sh && \
     ./envSetup.sh && \
     apt-get clean && \
